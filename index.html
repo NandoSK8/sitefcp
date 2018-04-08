@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-dark" style="opacity: 0.8; z-index: 1">
+        <nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-gradient-dark sticky-top" style="opacity: 0.8; z-index: 1">
             <div class="container">
                 <a class="navbar-brand h1" href="#">Hello world</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
@@ -60,7 +60,7 @@
     </header>
     <main>
         <!------------slideshow------------------------------------->
-        <div id="Slideshow" class="carousel slide" data-ride="carousel">
+        <div id="Slideshow" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
                 <li data-target="#Slideshow" data-slide-to="0" class="active"></li>
                 <li data-target="#Slideshow" data-slide-to="1"></li>
@@ -141,5 +141,49 @@
       <script src="node_modules/jquery/dist/jquery.js"></script>
       <script src="node_modules/popper.js/dist/umd/popper.js"></script>
       <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+      <script>
+          jQuery(document).ready(function($){
+              
+              var controleNav = false;
+              $(document).scroll(function(e) {
+                  var scrollTop = $(document).scrollTop();
+                  if(scrollTop > $('.navbar').height()){
+                      if(controleNav == false){
+                          $('.navbar').removeClass('sticky-top').addClass('fixed-top')
+                          $('.navbar').hide();
+                          $('.navbar').fadeIn('slow');
+                          controleNav = true;
+                      }
+                  }
+                  else{
+                      if(controleNav == true){
+                          $('.navbar').removeClass('fixed-top').addClass('sticky-top')
+                          controleNav = false;
+                      }
+                  }
+              });
+          });
+          
+          jQuery(document).ready(function($){ 
+           var controleNav = false;
+              $(document).scroll(function(e) {
+                  var scrollTop = $(document).scrollTop();
+                  if(scrollTop > $('.navbar').height()){
+                      if(controleNav == false){
+                          $('.navbar').removeClass('bg-gradient-dark').addClass('bg-gradient-primary')
+                          $('.navbar').hide();
+                          $('.navbar').fadeIn('slow');
+                          controleNav = true;
+                      }
+                  }
+                  else{
+                      if(controleNav == true){
+                          $('.navbar').removeClass('bg-gradient-primary').addClass('bg-gradient-dark')
+                          controleNav = false;
+                      }
+                  }
+              });
+               });
+      </script>
   </body>
 </html>
